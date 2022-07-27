@@ -18,7 +18,7 @@ app.get("/getSteamUsers", async (req, res) => {
 app.get("/getSteamGameList", async (req, res) => {
     const response = await fetch("http://api.steampowered.com/ISteamApps/GetAppList/v0002/")
     const data = await response.json()
-    res.send(data)
+    res.json(data)
 })
 
 app.listen(5000)
