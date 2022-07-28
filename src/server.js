@@ -21,4 +21,46 @@ app.get("/getSteamGameList", async (req, res) => {
     res.json(data)
 })
 
+
+app.get("/getTopGames", async (req, res) => {
+    const browser = await puppeteer.launch()
+    const page = await browser.newPage()
+    await page.goto("https://store.steampowered.com/stats/Steam-Game-and-Player-Statistics")
+
+    const currentPlayers = await page.evaluate(() => {
+        const tds = Array.from(document.querySelectorAll('#detailStats > table > tbody > tr > td:nth-child(1) > span'))
+        return tds.map(td => td.innerText)
+    });
+
+    const peakPlayers = await page.evaluate(() => {
+        const tds = Array.from(document.querySelectorAll('#detailStats > table > tbody > tr > td:nth-child(2) > span'))
+        return tds.map(td => td.innerText)
+    })
+
+    const gameNames = await page.evaluate(() => {
+        const tds = Array.from(document.querySelectorAll('#detailStats > table > tbody > tr > td:nth-child(4) > a'))
+        return tds.map(td => td.innerText)
+    })
+
+    const gameIds = await page.evaluate(() => {
+        const tds = Array.from(document.querySelectorAll('#detailStats > table > tbody > tr > td:nth-child(4) > a'))
+        return tds.map(td => td.getAttribute("href").split("/")[4])
+    })
+
+    //Fill all data in an array of objects
+    let gameData = []
+
+    for (let i in currentPlayers) {
+        let newGame = {
+            name: gameNames[i],
+            id: gameIds[i],
+            current: currentPlayers[i],
+            peak: peakPlayers[i]
+        }
+        gameData.push(newGame)
+    }
+    res.json(gameData)
+    await browser.close()
+})
+
 app.listen(5000)

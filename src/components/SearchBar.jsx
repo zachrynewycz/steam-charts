@@ -7,7 +7,6 @@ const SearchBar = () => {
     return (  
         <div>
             <input type="text" placeholder="Search games..." onChange={(e) => setInput(e.target.value)}/>
-            <button/>
             <SearchResults userInput={input}/>
         </div>
     );
