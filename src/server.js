@@ -42,23 +42,26 @@ app.get("/getTopGames", async (req, res) => {
         return tds.map(td => td.innerText)
     })
 
-    const gameIds = await page.evaluate(() => {
+    const gameId = await page.evaluate(() => {
         const tds = Array.from(document.querySelectorAll('#detailStats > table > tbody > tr > td:nth-child(4) > a'))
         return tds.map(td => td.getAttribute("href").split("/")[4])
     })
 
-    //Fill all data in an array of objects
     let gameData = []
-
+    //dont run loop if there is no player data
+    if (currentPlayers === null) console.log("noneer");
+    
+    //Fill all data in an array of objects
     for (let i in currentPlayers) {
         let newGame = {
             name: gameNames[i],
-            id: gameIds[i],
+            id: gameId[i],
             current: currentPlayers[i],
             peak: peakPlayers[i]
         }
         gameData.push(newGame)
     }
+
     res.json(gameData)
     await browser.close()
 })
