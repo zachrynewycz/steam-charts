@@ -9,9 +9,9 @@ const Home = () => {
         <img className='w-40' src={`${process.env.PUBLIC_URL}/logo_steam.png`}/>
         <SearchBar/>
       </nav>
-      <TopGames/>
-      
+
       <SteamUsersOnline/>
+      <TopGames/>
     </div>        
     );
 }
