@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const TopGames = () => {
     const [gameData, setGameData] = useState([])
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch("/getTopGames")
@@ -23,7 +25,7 @@ const TopGames = () => {
             <div key={game.id}>
                 <div>
                     <img src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game.id}/header.jpg`}/>
-                    <p>{game.name}</p>
+                    <p onClick={(e) => {navigate(`/game/${game.id}`)}}>{game.name}</p>
                 </div>
                 <div>
                     <p>{game.current}</p>
