@@ -14,7 +14,7 @@ const Store = () => {
         getGamePlayerCount()
     }, [])
 
-    useEffect(() => {console.log(steamGameData)}, [steamGameData])
+    useEffect(() => {}, [steamGameData])
 
     const getSteamGameData = () => {
         fetch(`/getSteamGameData/${appid}`)
@@ -27,18 +27,19 @@ const Store = () => {
         fetch(`/getGamePlayerCount/${appid}`)
         .then(res => res.json())
         .then(data => setGamePlayerData(data))
+        .catch(e => console.log(e))
     }
 
     return (  
-        <div>
-            {steamGameData && gamePlayerData && 
-                <>
-                    <NavBar/>
-                    <StoreHeader data={steamGameData}/>
-                    <StoreBody data={steamGameData} players={gamePlayerData}/> 
-                </>
-            }
-        </div>
+    <>
+        {steamGameData && gamePlayerData && 
+            <>
+                <NavBar/>
+                <StoreHeader data={steamGameData}/>
+                <StoreBody data={steamGameData} players={gamePlayerData}/> 
+            </>
+        }
+    </>
     );
 }
  

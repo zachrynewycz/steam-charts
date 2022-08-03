@@ -13,19 +13,19 @@ const TopGames = () => {
 
     return (  
     <div>
-        <>
+        <div>
             <h1>Top Games &#128200;</h1>
             <div>
                 <h1>Playing Now</h1>
                 <h1>Peak Today</h1>
             </div>
-        </>
+        </div>
         
         {gameData.slice(0,10).map(game => 
             <div key={game.id}>
                 <div>
                     <img src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game.id}/header.jpg`}/>
-                    <p onClick={(e) => {navigate(`/game/${game.id}`)}}>{game.name}</p>
+                    <p className="cursor-pointer" onClick={(e) => {navigate(`/game/${game.id}`)}}>{game.name}</p>
                 </div>
                 <div>
                     <p>{game.current}</p>

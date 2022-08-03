@@ -4,7 +4,7 @@ import TopGames from "../components/TopGames";
 
 const Home = () => {
     return (  
-    <div className='bg-[#0c1820] h-screen'>
+    <div className=''>
       <NavBar/>
       <SteamUsersOnline/>
       <TopGames/>
