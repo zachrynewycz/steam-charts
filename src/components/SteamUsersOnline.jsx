@@ -11,7 +11,6 @@ const SteamUsersOnline = () => {
             setIsOnline(data[1]) 
             setIsPlaying(data[3])
         })
-        .catch(e => console.log(e))
     },[])
 
     return (

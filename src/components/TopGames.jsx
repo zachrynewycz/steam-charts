@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import TopGameRow from "./TopGameRow";
 
 const TopGames = () => {
     const [gameData, setGameData] = useState([])
-    const navigate = useNavigate();
 
     useEffect(() => {
         fetch("/getTopGames")
@@ -20,20 +19,7 @@ const TopGames = () => {
                 <h1>Peak Today</h1>
             </div>
         </div>
-        
-        {gameData.slice(0,10).map(game => 
-            <div key={game.id}>
-                <div>
-                    <img src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game.id}/header.jpg`}/>
-                    <p className="cursor-pointer" onClick={(e) => {navigate(`/game/${game.id}`)}}>{game.name}</p>
-                </div>
-                <div>
-                    <p>{game.current}</p>
-                    <p>{game.peak}</p>
-                </div>
-                <hr/>
-            </div>
-        )}
+        {gameData.slice(0,10).map(game => <TopGameRow game={game}/>)}
     </div>
     );
 }

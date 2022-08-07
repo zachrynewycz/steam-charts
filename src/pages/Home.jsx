@@ -4,11 +4,11 @@ import TopGames from "../components/TopGames";
 
 const Home = () => {
     return (  
-    <div className=''>
-      <NavBar/>
-      <SteamUsersOnline/>
-      <TopGames/>
-    </div>        
+        <div>
+            <NavBar/>
+            <SteamUsersOnline/>
+            <TopGames/>
+        </div>        
     );
 }
  

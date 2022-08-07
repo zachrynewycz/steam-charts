@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import StoreBody from "../components/StoreBody";
-import StoreHeader from "../components/StoreHeader";
+import GameInfo from "../components/GameInfo";
+import GameBanner from "../components/GameBanner";
 
 const Store = () => {
     const [steamGameData, setSteamGameData] = useState();
     const [gamePlayerData, setGamePlayerData] = useState();
-    const {appid} = useParams();
+    const { appid } = useParams();
 
     useEffect(() => {
         getSteamGameData()
@@ -32,12 +32,12 @@ const Store = () => {
 
     return (  
     <>
-        {steamGameData && gamePlayerData && 
-            <>
+        { steamGameData && gamePlayerData && 
+            <div>
                 <NavBar/>
-                <StoreHeader data={steamGameData}/>
-                <StoreBody data={steamGameData} players={gamePlayerData}/> 
-            </>
+                <GameBanner data={steamGameData}/>
+                <GameInfo data={steamGameData} players={gamePlayerData}/> 
+            </div>
         }
     </>
     );

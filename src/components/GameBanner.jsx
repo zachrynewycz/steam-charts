@@ -1,6 +1,6 @@
 import CategoryTag from "./CategoryTag";
 
-const StoreHeader = ({ data }) => {
+const GameBanner = ({ data }) => {
     return (  
         <div>
             <img src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${data.steam_appid}/header.jpg`}/>
@@ -20,4 +20,4 @@ const StoreHeader = ({ data }) => {
     );
 }
  
-export default StoreHeader;
+export default GameBanner;

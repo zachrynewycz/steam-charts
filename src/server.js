@@ -1,68 +1,70 @@
 const puppeteer = require('puppeteer');
 const express = require('express')
-const app = express()
 const fetch = require("node-fetch")
+const app = express()
 
 app.get("/getSteamUsers", async (req, res) => {
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
     await page.goto("https://store.steampowered.com/about/")
 
-    let extractedText = await page.$eval('.online_stats', (el) => el.innerText);
-    let extractedTextArray = extractedText.split("\n")
-    
-    res.json(extractedTextArray)
-    await browser.close()
-})
+    let playerCount = await page.$eval('.online_stats', (el) => el.innerText);
+    let formatedCount = playerCount.split("\n")
 
-app.get("/getSteamGameList", async (req, res) => {
-    const response = await fetch("http://api.steampowered.com/ISteamApps/GetAppList/v0002/")
-    const data = await response.json()
-    res.json(data)
+    await browser.close()
+    res.json(formatedCount)
 })
 
 app.get("/getTopGames", async (req, res) => {
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
     await page.goto("https://store.steampowered.com/stats/Steam-Game-and-Player-Statistics")
-
-    const currentPlayers = await page.$$eval('#detailStats > table > tbody > tr > td:nth-child(1) > span', el => el.map((td) => {return td.innerText}))
-    const peakPlayers = await page.$$eval('#detailStats > table > tbody > tr > td:nth-child(2) > span', el => el.map((td) => {return td.innerText}))
-    const gameNames = await page.$$eval('#detailStats > table > tbody > tr > td:nth-child(4) > a', el => el.map((td) => {return td.innerText}))
-    const gameIds = await page.$$eval('#detailStats > table > tbody > tr > td:nth-child(4) > a', el => el.map((td) => {return td.getAttribute("href").split("/")[4]}))
-
+    
+    const gameIds = await page.$$eval('#detailStats > table > tbody > tr > td:nth-child(4) > a', el => el.map((td) => { return td.getAttribute("href").split("/")[4] }))
+    const gameNames = await page.$$eval('#detailStats > table > tbody > tr > td:nth-child(4) > a', el => el.map((td) => { return td.innerText }))
+    const currentPlayers = await page.$$eval('#detailStats > table > tbody > tr > td:nth-child(1) > span', el => el.map((td) => { return td.innerText }))
+    const peakPlayers = await page.$$eval('#detailStats > table > tbody > tr > td:nth-child(2) > span', el => el.map((td) => { return td.innerText }))
+    await browser.close()
+    
+    //Push each game and its corrisponding data into one object
     let gameData = []
-
-    for (let i in currentPlayers) {
-        let newGame = {
+    
+    for (let i in gameIds) {
+        let game = {
             name: gameNames[i],
             id: gameIds[i],
             current: currentPlayers[i],
             peak: peakPlayers[i]
         }
-        gameData.push(newGame)
+        gameData.push(game)
     }
     res.json(gameData)
-    await browser.close()
-})
-
-app.get("/getSteamGameData/:id", async (req, res) => {
-    let app_id = req.params.id
-    const response = await fetch(`https://store.steampowered.com/api/appdetails?appids=${app_id}`)
-    const data = await response.json()
-    res.json(data)
 })
 
 app.get("/getGamePlayerCount/:id", async (req, res) => {
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
-    let app_id = req.params.id
-    await page.goto(`https://steamcharts.com/app/${app_id}`)
-
-    const playerCount = await page.$$eval('#app-heading > div > span', el => el.map((td) => {return td.innerText}))
-
-    res.json(playerCount)
+    await page.goto(`https://steamcharts.com/app/${req.params.id}`)
+    
+    const playerCount = await page.$$eval('#app-heading > div > span', el => el.map((td) => { return td.innerText }))
     await browser.close()
+    res.json(playerCount)
 })
+
+app.get("/getSteamGameData/:id", async (req, res) => {
+    const request = await fetchAPI(`https://store.steampowered.com/api/appdetails?appids=${req.params.id}`)
+    res.json(request)
+})
+
+app.get("/getSteamGameList", async (req, res) => {
+    const request = await fetchAPI("http://api.steampowered.com/ISteamApps/GetAppList/v0002/")
+    res.json(request)
+})
+
+const fetchAPI = async (URL) => {
+    const response = await fetch(URL)
+    const data = await response.json()
+    return data
+}
 
 app.listen(5000)
