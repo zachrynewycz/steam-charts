@@ -14,12 +14,9 @@ const TopGames = () => {
     <div>
         <div>
             <h1>Top Games &#128200;</h1>
-            <div>
-                <h1>Playing Now</h1>
-                <h1>Peak Today</h1>
-            </div>
+            <h1>Playing Now &nbsp; Peak Today</h1>
         </div>
-        {gameData.slice(0,10).map(game => <TopGameRow game={game}/>)}
+        {gameData.slice(0,12).map(game => <TopGameRow game={game}/>)}
     </div>
     );
 }

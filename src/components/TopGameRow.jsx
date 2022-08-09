@@ -10,10 +10,7 @@ const TopGameRow = ({ game }) => {
             <p>{game.name}</p>
         </div>
         
-        <div>
-            <p>{game.current}</p>
-            <p>{game.peak}</p>
-        </div>
+        <div>{game.current} &nbsp; {game.peak}</div>
         <hr/>
     </div>
     );
