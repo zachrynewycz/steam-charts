@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const TopGameRow = ({ game }) => {
+const TopGame = ({ game }) => {
     const navigate = useNavigate();
 
     return (  
@@ -16,4 +16,4 @@ const TopGameRow = ({ game }) => {
     );
 }
  
-export default TopGameRow;
+export default TopGame;

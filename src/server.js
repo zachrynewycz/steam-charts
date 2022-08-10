@@ -46,9 +46,27 @@ app.get("/getGamePlayerCount/:id", async (req, res) => {
     const page = await browser.newPage()
     await page.goto(`https://steamcharts.com/app/${req.params.id}`)
     
-    const playerCount = await page.$$eval('#app-heading > div > span', el => el.map((td) => { return td.innerText }))
+    const playerCount = await page.$$eval('#toppeaks > tbody > tr > td.game-name.left > a', el => el.map((td) => { return td.innerText }))
     await browser.close()
     res.json(playerCount)
+})
+
+app.get("/getRecords", async (req, res) => {
+    const browser = await puppeteer.launch()
+    const page = await browser.newPage()
+    await page.goto("https://steamcharts.com/")
+    
+    const game = await page.$$eval("#toppeaks > tbody > tr", e => e.map((td) => { return td.innerText.split("\t") }))
+    const appids = await page.$$eval("#toppeaks > tbody > tr> td.game-name.left > a", e => e.map((td) => { return td.getAttribute("href").replace(/\D/g,''); }))
+
+    let records = []
+
+    for (let i in appids) {
+        let record = {id: appids[i], data: game[i]}
+        records.push(record)
+    }
+    await browser.close()
+    res.json(recordData)
 })
 
 app.get("/getSteamGameData/:id", async (req, res) => {

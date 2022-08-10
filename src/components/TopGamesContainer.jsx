@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import TopGameRow from "./TopGameRow";
+import TopGame from "./TopGameRow";
 
-const TopGames = () => {
+const TopGamesContainer = () => {
     const [gameData, setGameData] = useState([])
 
     useEffect(() => {
@@ -16,9 +16,9 @@ const TopGames = () => {
             <h1>Top Games &#128200;</h1>
             <h1>Playing Now &nbsp; Peak Today</h1>
         </div>
-        {gameData.slice(0,12).map(game => <TopGameRow game={game}/>)}
+        {gameData.slice(0,12).map(game => <TopGame game={game}/>)}
     </div>
     );
 }
  
-export default TopGames;
+export default TopGamesContainer;

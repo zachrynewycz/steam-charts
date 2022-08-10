@@ -7,7 +7,7 @@ import GameBanner from "../components/GameBanner";
 
 const Store = () => {
     const [steamGameData, setSteamGameData] = useState();
-    const [gamePlayerData, setGamePlayerData] = useState();
+    const [playerCounts, setPlayerCounts] = useState();
     const { appid } = useParams();
 
     useEffect(() => {
@@ -27,17 +27,17 @@ const Store = () => {
     const getGamePlayerCount = () => {
         fetch(`/getGamePlayerCount/${appid}`)
         .then(res => res.json())
-        .then(data => setGamePlayerData(data))
+        .then(data => setPlayerCounts(data))
         .catch(e => console.log(e))
     }
 
     return (  
     <>
-        { steamGameData && gamePlayerData && 
+        {(steamGameData && gamePlayerData) && 
             <div>
                 <NavBar/>
-                <GameBanner data={steamGameData}/>
-                <GameInfo data={steamGameData} players={gamePlayerData}/> 
+                <GameBanner game={steamGameData}/>
+                <GameInfo game={steamGameData} playerCount={playerCounts}/> 
                 <Carousel images={steamGameData.screenshots}/>
             </div>
         }
