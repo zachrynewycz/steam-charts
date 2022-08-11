@@ -66,7 +66,7 @@ app.get("/getRecords", async (req, res) => {
         records.push(record)
     }
     await browser.close()
-    res.json(recordData)
+    res.json(records)
 })
 
 app.get("/getSteamGameData/:id", async (req, res) => {

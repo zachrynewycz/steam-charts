@@ -33,7 +33,7 @@ const Store = () => {
 
     return (  
     <>
-        {(steamGameData && gamePlayerData) && 
+        {(steamGameData && playerCounts) && 
             <div>
                 <NavBar/>
                 <GameBanner game={steamGameData}/>

@@ -8,18 +8,17 @@ const SearchResults = ({ userInput }) => {
     useEffect(() => {        
         fetch("/getSteamGameList")
         .then(res => res.json())
-        .then(data => { setSteamGameData(data.applist.apps) })
-        .catch(e => console.log(e))
+        .then(data => setSteamGameData(data.applist.apps))
     }, [])
     
     return (  
     <ul>
-        {userInput && steamGameData && (
+        {(userInput && steamGameData) &&
             steamGameData
             .filter(game => game.name.toLowerCase() === userInput.toLowerCase())
             .slice(0,10)
             .map(game => <li onClick={(e) => {navigate(`/game/${e.target.value}`)}} className="cursor-pointer text-white" value={game.appid} key={game.appid}>{game.name}</li>)
-        )}
+        }
     </ul>
     );
 }

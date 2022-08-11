@@ -1,18 +1,18 @@
 import { useNavigate } from "react-router-dom";
 
-const TopGame = ({ game }) => {
+const TopGame = ({ data }) => {
     const navigate = useNavigate();
 
     return (  
-    <div key={game.id} onClick={() => {navigate(`/game/${game.id}`)}}>
-        <div>
-            <img src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game.id}/header.jpg`}/>
-            <p>{game.name}</p>
+        <div onClick={() => {navigate(`/game/${data.id}`)}}>
+            <div>
+                <img src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${data.id}/header.jpg`}/>
+                <p>{data.name}</p>
+            </div>
+            
+            <div>{data.current} &nbsp; {data.peak}</div>
+            <hr/>
         </div>
-        
-        <div>{game.current} &nbsp; {game.peak}</div>
-        <hr/>
-    </div>
     );
 }
  
