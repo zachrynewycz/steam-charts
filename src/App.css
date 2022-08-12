@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    html {
+        @apply bg-page-bg
+    }
+
+    @font-face {
+        font-family: Pop-Bold;
+        src: url("../public/fonts/Poppins-Bold.ttf");
+    }
+
+    @font-face {
+        font-family: Pop-Med;
+        src: url("../public/fonts/Poppins-Medium.ttf");
+    }
+
+    @font-face {
+        font-family: Pop-Reg;
+        src: url("../public/fonts/Poppins-Regular.ttf");
+    }
+
+    @font-face {
+        font-family: Pop-Semi;
+        src: url("../public/fonts/Poppins-SemiBold.ttf");
+    }
+}

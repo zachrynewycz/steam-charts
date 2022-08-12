@@ -29,6 +29,7 @@ const Store = () => {
         .then(res => res.json())
         .then(data => setPlayerCounts(data))
         .catch(e => console.log(e))
+        console.log(playerCounts)
     }
 
     return (  

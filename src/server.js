@@ -46,7 +46,7 @@ app.get("/getGamePlayerCount/:id", async (req, res) => {
     const page = await browser.newPage()
     await page.goto(`https://steamcharts.com/app/${req.params.id}`)
     
-    const playerCount = await page.$$eval('#toppeaks > tbody > tr > td.game-name.left > a', el => el.map((td) => { return td.innerText }))
+    const playerCount = await page.$$eval('#app-heading > div > span', el => el.map((td) => { return td.innerText }))
     await browser.close()
     res.json(playerCount)
 })

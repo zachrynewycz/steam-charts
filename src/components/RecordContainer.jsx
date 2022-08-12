@@ -16,7 +16,8 @@ const RecordContainer = () => {
                 <h1>Top Records &#128293;</h1>
                 <h1>All Time Peak &nbsp; Date</h1>
             </div>
-            {records && records.map((record, i) => <RecordRow key={i} data={record}/>)}
+            
+            {records.map(record => <RecordRow key={record.id} data={record}/>)}
         </div>
     );
 }
