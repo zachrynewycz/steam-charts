@@ -1,6 +1,6 @@
 const Footer = () => {
     return (  
-        <footer className="text-gray-alt-txt text-xs text-center my-10">All data comes from Steams API's, Web Scraping, and external API's. If any of those services are down, data with not be shown.</footer>
+        <footer className="text-gray-alt-txt text-xs text-center my-12">Notice: All data comes from Steams API's, external API's, and scraped from websites. If any of those services are down, data with not be shown.</footer>
     );
 }
  

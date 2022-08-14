@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import GameInfo from "../components/GameInfo";
 import Carousel from "../components/Carousel";
+import Footer from "../components/Footer";
 import GameBanner from "../components/GameBanner";
 
 const Store = () => {
@@ -15,7 +16,7 @@ const Store = () => {
         getGamePlayerCount()
     }, [])
 
-    useEffect(() => {}, [steamGameData])
+    useEffect(() => {}, [appid])
 
     const getSteamGameData = () => {
         fetch(`/getSteamGameData/${appid}`)
@@ -29,17 +30,17 @@ const Store = () => {
         .then(res => res.json())
         .then(data => setPlayerCounts(data))
         .catch(e => console.log(e))
-        console.log(playerCounts)
     }
 
     return (  
     <>
         {(steamGameData && playerCounts) && 
-            <div>
+            <div className="max-w-[850px] min-w-[400px] mx-auto">
                 <NavBar/>
                 <GameBanner game={steamGameData}/>
                 <GameInfo game={steamGameData} playerCount={playerCounts}/> 
                 <Carousel images={steamGameData.screenshots}/>
+                <Footer/>
             </div>
         }
     </>

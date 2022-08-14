@@ -10,7 +10,13 @@ import { Navigation, Pagination } from "swiper";
 const Carousel = ({ images }) => {
     return (  
     <div>
-        <Swiper navigation={true} slidesPerView={5} loop={true} spaceBetween={20} modules={[Pagination, Navigation]}>
+        <Swiper 
+            navigation={true} 
+            slidesPerView={3} 
+            loop={true} 
+            spaceBetween={20} 
+            modules={[Pagination, Navigation]}
+        >
             {images.map(image => <SwiperSlide key={image.id}><img src={image.path_full}/></SwiperSlide>)}
         </Swiper>
     </div>

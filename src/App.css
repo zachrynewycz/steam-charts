@@ -16,14 +16,14 @@
     }
     
     .scrollbar::-webkit-scrollbar-thumb {
-        background-color: #1b2634;
+        background-color: #28394d;
         border-radius: 20px;
         border: 6px solid transparent;
         background-clip: content-box;
     }
     
     .scrollbar::-webkit-scrollbar-thumb:hover {
-        background-color: #a8bbbf;
+        background-color: #374e6a;
     }
 
     @font-face {
