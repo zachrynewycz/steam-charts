@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 
 const Home = () => {
     return (  
-        <div>
+        <div className="max-w-[800px] min-w-[400px] mx-auto">
             <NavBar/>
             <SteamUsersOnline/>
             <TopGamesContainer/>

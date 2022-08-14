@@ -7,6 +7,25 @@
         @apply bg-page-bg
     }
 
+    .scrollbar::-webkit-scrollbar {
+        width: 20px;
+    }
+    
+    .scrollbar::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+    
+    .scrollbar::-webkit-scrollbar-thumb {
+        background-color: #1b2634;
+        border-radius: 20px;
+        border: 6px solid transparent;
+        background-clip: content-box;
+    }
+    
+    .scrollbar::-webkit-scrollbar-thumb:hover {
+        background-color: #a8bbbf;
+    }
+
     @font-face {
         font-family: Pop-Bold;
         src: url("../public/fonts/Poppins-Bold.ttf");

@@ -15,6 +15,7 @@ module.exports = {
       "gdnt-pri": "#1b2838",
       "gdnt-sec": "#194454",
       "page-bg": "#0b1820",
+      "white": "#FFFFFF",
     },
     extend: {
       fontFamily: {
