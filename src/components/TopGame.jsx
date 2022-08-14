@@ -11,7 +11,7 @@ const TopGame = ({ data }) => {
                     <p className="md:px-5 text-white font-pop_semi text-sm md:text-lg">{data.name}</p>
                 </div>
                 
-                <div className="w-1/2 flex items-center justify-around font-pop_semi text-md md:text-xl text-white text-center">
+                <div className="w-1/2 flex items-center justify-around font-pop_semi text-md md:text-2xl text-white text-center">
                     <p className="text-green-txt w-1/2">{data.current}</p>
                     <p className="w-1/2">{data.peak}</p>
                 </div>

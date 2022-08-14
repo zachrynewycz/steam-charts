@@ -14,9 +14,8 @@ const Store = () => {
     useEffect(() => {
         getSteamGameData()
         getGamePlayerCount()
-    }, [])
+    }, [appid])
 
-    useEffect(() => {}, [appid])
 
     const getSteamGameData = () => {
         fetch(`/getSteamGameData/${appid}`)
