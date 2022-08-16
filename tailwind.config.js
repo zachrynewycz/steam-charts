@@ -19,7 +19,6 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        pop_bold: ["Pop-Bold"],
         pop_reg: ["Pop-Reg"],
         pop_semi: ["Pop-Semi"],
         pop_med: ["Pop-Med"],

@@ -16,6 +16,7 @@ const TopGame = ({ data }) => {
                     <p className="w-1/2">{data.peak}</p>
                 </div>
             </div>
+            
             <hr className="mt-3 mb-5 border-none h-1 bg-[#1b2634]"/>
         </div>
     );

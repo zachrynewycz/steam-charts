@@ -27,11 +27,6 @@
     }
 
     @font-face {
-        font-family: Pop-Bold;
-        src: url("../public/fonts/Poppins-Bold.ttf");
-    }
-
-    @font-face {
         font-family: Pop-Med;
         src: url("../public/fonts/Poppins-Medium.ttf");
     }

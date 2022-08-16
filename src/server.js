@@ -70,7 +70,7 @@ app.get("/getRecords", async (req, res) => {
 })
 
 app.get("/getSteamGameData/:id", async (req, res) => {
-    const request = await fetchAPI(`https://store.steampowered.com/api/appdetails?appids=${req.params.id}`)
+    const request = await fetchAPI(`https://store.steampowered.com/api/appdetails?appids=${req.params.id}&l=english`)
     res.json(request)
 })
 
