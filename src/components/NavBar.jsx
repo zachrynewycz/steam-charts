@@ -7,7 +7,7 @@ const NavBar = () => {
 
     return (  
     <nav className="flex items-center justify-between pt-4 mb-10">
-        <img onClick={() => navigate("/")} className='w-40 cursor-pointer hover:scale-105' src={`${process.env.PUBLIC_URL}/logo_steam_2.png`}/>
+        <img onClick={() => navigate("/")} className='w-36 md:w-40 cursor-pointer hover:scale-105' src={`${process.env.PUBLIC_URL}/logo_steam_2.png`}/>
         <SearchBar/>
     </nav>
     );

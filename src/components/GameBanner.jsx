@@ -2,10 +2,10 @@ import CategoryTag from "./CategoryTag";
 
 const GameBanner = ({ game }) => {
     return (  
-        <div className="flex">
-            <img className="rounded-tl-xl rounded-bl-xl w-2/3 object-cover" src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game.steam_appid}/header.jpg`}/>
+        <div className="flex flex-col md:flex-row">
+            <img className="rounded-tl-xl rounded-tr-xl md:rounded-tr-none md:rounded-tl-xl md:rounded-bl-xl md:w-2/3 object-cover w-full" src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game.steam_appid}/header.jpg`}/>
 
-            <div className="bg-component-bg rounded-tr-xl rounded-br-xl w-[40%] p-5">
+            <div className="bg-component-bg rounded-bl-xl md:rounded-bl-none md:rounded-tr-xl rounded-br-xl w-full md:w-[40%] p-5">
                 <h1 className="font-pop_semi text-white text-2xl">{game.name}</h1>
                 <div className="flex flex-wrap">
                     {game.genres

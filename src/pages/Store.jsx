@@ -34,7 +34,7 @@ const Store = () => {
     return (  
     <>
         {(steamGameData && playerCounts) && 
-            <div className="max-w-[850px] min-w-[400px] mx-auto">
+            <div className="max-w-[850px] min-w-[400px] mx-auto p-5 md:p-none">
                 <NavBar/>
                 <GameBanner game={steamGameData}/>
                 <GameInfo game={steamGameData} playerCount={playerCounts}/> 
