@@ -88,9 +88,9 @@ const fetchAPI = async (URL) => {
 
 // Handles any requests that don't match the ones above
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../build')));
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../build/index.html'));
+    app.use(express.static(path.join(__dirname, './build')));
+    app.get('/*', (req, res) => {
+        res.sendFile(path.join(__dirname, './build/index.html'));
     })
 }
 
