@@ -5,7 +5,7 @@ const SteamUsersOnline = () => {
     const [isOnline, setIsOnline] = useState("0");
     
     useEffect(() => {
-        fetch("/getSteamUsers")
+        fetch("https://steamcharts.herokuapp.com/getSteamUsers")
         .then(res => res.json())
         .then(data => {
             setIsOnline(data[1]) 

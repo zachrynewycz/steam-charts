@@ -6,7 +6,7 @@ const SearchResults = ({ userInput, setInput }) => {
     const navigate = useNavigate();
 
     useEffect(() => {        
-        fetch("/getSteamGameList")
+        fetch("https://steamcharts.herokuapp.com/getSteamGameList")
         .then(res => res.json())
         .then(data => setSteamGameData(data.applist.apps))
     }, [])
