@@ -4,7 +4,7 @@ const fetch = require("node-fetch")
 const app = express()
 
 app.get("/getSteamUsers", async (req, res) => {
-    const browser = await puppeteer.launch()
+    const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"] })
     const page = await browser.newPage()
     await page.goto("https://store.steampowered.com/about/")
 
@@ -16,7 +16,7 @@ app.get("/getSteamUsers", async (req, res) => {
 })
 
 app.get("/getTopGames", async (req, res) => {
-    const browser = await puppeteer.launch()
+    const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"] })
     const page = await browser.newPage()
     await page.goto("https://store.steampowered.com/stats/Steam-Game-and-Player-Statistics")
     
@@ -42,7 +42,7 @@ app.get("/getTopGames", async (req, res) => {
 })
 
 app.get("/getGamePlayerCount/:id", async (req, res) => {
-    const browser = await puppeteer.launch()
+    const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"] })
     const page = await browser.newPage()
     await page.goto(`https://steamcharts.com/app/${req.params.id}`)
     
@@ -52,7 +52,7 @@ app.get("/getGamePlayerCount/:id", async (req, res) => {
 })
 
 app.get("/getRecords", async (req, res) => {
-    const browser = await puppeteer.launch()
+    const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"] })
     const page = await browser.newPage()
     await page.goto("https://steamcharts.com/")
     
