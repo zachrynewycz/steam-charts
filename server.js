@@ -2,6 +2,9 @@ const puppeteer = require('puppeteer');
 const express = require('express')
 const fetch = require("node-fetch")
 const app = express()
+const cors = require("cors")
+
+app.use(cors())
 
 app.get("/getSteamUsers", async (req, res) => {
     const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"] })
@@ -38,6 +41,7 @@ app.get("/getTopGames", async (req, res) => {
         }
         gameData.push(game)
     }
+    res.header("Access-Contorl-Allow-Origin", "https://steamcharts.herokuapp.com")
     res.json(gameData)
 })
 
@@ -84,7 +88,6 @@ const fetchAPI = async (URL) => {
     const data = await response.json()
     return data
 }
-
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT);
