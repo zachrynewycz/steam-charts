@@ -2,7 +2,6 @@ const puppeteer = require('puppeteer');
 const express = require('express')
 const fetch = require("node-fetch")
 const app = express()
-const path = require("path")
 
 app.get("/getSteamUsers", async (req, res) => {
     const browser = await puppeteer.launch()
@@ -84,13 +83,6 @@ const fetchAPI = async (URL) => {
     const response = await fetch(URL)
     const data = await response.json()
     return data
-}
-
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("build"))
-    app.get("*", (res, req) => {
-        req.sendFile(path.resolve(__dirname, 'build', 'index.html'))
-    })
 }
 
 const PORT = process.env.PORT || 5000
