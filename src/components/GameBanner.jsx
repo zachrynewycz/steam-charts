@@ -13,7 +13,9 @@ const GameBanner = ({ game }) => {
                         .splice(0, Math.floor(game.genres.length) / 1.5)
                     }
                 </div>
-                <div className="bg-price-btn rounded-md py-1 px-3 font-pop_med text-white my-5 inline-block text-xl">{game.is_free ? "Free" : game.price_overview.final_formatted}</div>
+                <div className="bg-price-btn rounded-md py-1 px-3 font-pop_med text-white my-5 inline-block text-xl">
+                    {game.is_free ? "Free" : game.price_overview?.final_formatted}
+                </div>
 
                 <div className="text-white font-pop_med">
                     <div className="flex justify-between">
