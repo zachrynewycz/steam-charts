@@ -5,7 +5,7 @@ const RecordContainer = () => {
     const [records, setRecords] = useState([])
 
     useEffect(() => {
-        fetch("https://steamcharts.herokuapp.com/getRecords")
+        fetch("http://localhost:5000/getRecords")
         .then(res => res.json())
         .then(data => setRecords(data))
     }, [])

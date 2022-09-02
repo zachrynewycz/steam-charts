@@ -5,7 +5,7 @@ const TopGamesContainer = () => {
     const [gameData, setGameData] = useState([])
 
     useEffect(() => {
-        fetch("https://steamcharts.herokuapp.com/getTopGames")
+        fetch("http://localhost:5000/getTopGames")
         .then(res => res.json())
         .then(data => setGameData(data))
     }, [])

@@ -1,21 +1,20 @@
-const puppeteer = require('puppeteer');
-const express = require('express')
-const fetch = require("node-fetch")
-const app = express()
-const cors = require("cors")
+const express = require('express');
+const app = express();
+const cors = require("cors");
+app.use(cors());
 
-app.use(cors())
+const puppeteer = require('puppeteer');
+const fetch = require("node-fetch");
 
 app.get("/getSteamUsers", async (req, res) => {
     const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"] })
     const page = await browser.newPage()
     await page.goto("https://store.steampowered.com/about/")
-
+    
     let playerCount = await page.$eval('.online_stats', (el) => el.innerText);
-    let formatedCount = playerCount.split("\n")
 
     await browser.close()
-    res.json(formatedCount)
+    res.json(playerCount?.split("\n"))
 })
 
 app.get("/getTopGames", async (req, res) => {
@@ -27,9 +26,7 @@ app.get("/getTopGames", async (req, res) => {
     const gameNames = await page.$$eval('#detailStats > table > tbody > tr > td:nth-child(4) > a', el => el.map((td) => { return td.innerText }))
     const currentPlayers = await page.$$eval('#detailStats > table > tbody > tr > td:nth-child(1) > span', el => el.map((td) => { return td.innerText }))
     const peakPlayers = await page.$$eval('#detailStats > table > tbody > tr > td:nth-child(2) > span', el => el.map((td) => { return td.innerText }))
-    await browser.close()
     
-    //Push each game and its corrisponding data into one object
     let gameData = []
     
     for (let i in gameIds) {
@@ -41,7 +38,7 @@ app.get("/getTopGames", async (req, res) => {
         }
         gameData.push(game)
     }
-    res.header("Access-Contorl-Allow-Origin", "https://steamcharts.herokuapp.com")
+    await browser.close()
     res.json(gameData)
 })
 
@@ -51,6 +48,7 @@ app.get("/getGamePlayerCount/:id", async (req, res) => {
     await page.goto(`https://steamcharts.com/app/${req.params.id}`)
     
     const playerCount = await page.$$eval('#app-heading > div > span', el => el.map((td) => { return td.innerText }))
+    
     await browser.close()
     res.json(playerCount)
 })
@@ -62,9 +60,9 @@ app.get("/getRecords", async (req, res) => {
     
     const game = await page.$$eval("#toppeaks > tbody > tr", e => e.map((td) => { return td.innerText.split("\t") }))
     const appids = await page.$$eval("#toppeaks > tbody > tr> td.game-name.left > a", e => e.map((td) => { return td.getAttribute("href").replace(/\D/g,''); }))
-
+    
     let records = []
-
+    
     for (let i in appids) {
         let record = {id: appids[i], data: game[i]}
         records.push(record)
@@ -89,5 +87,5 @@ const fetchAPI = async (URL) => {
     return data
 }
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5000;
 app.listen(PORT);

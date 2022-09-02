@@ -17,14 +17,14 @@ const Store = () => {
     }, [appid])
 
     const getSteamGameData = () => {
-        fetch(`https://steamcharts.herokuapp.com/getSteamGameData/${appid}`)
+        fetch(`http://localhost:5000/getSteamGameData/${appid}`)
         .then(res => res.json())
         .then(data => setSteamGameData(data[appid].data))
         .catch(e => console.log(e))
     }
 
     const getGamePlayerCount = () => {
-        fetch(`https://steamcharts.herokuapp.com/getGamePlayerCount/${appid}`)
+        fetch(`http://localhost:5000/getGamePlayerCount/${appid}`)
         .then(res => res.json())
         .then(data => setPlayerCounts(data))
         .catch(e => console.log(e))
