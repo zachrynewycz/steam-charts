@@ -20,13 +20,15 @@ app.get("/getSteamUsers", async (req, res) => {
 app.get("/getTopGames", async (req, res) => {
     const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"] })
     const page = await browser.newPage()
-    await page.goto("https://store.steampowered.com/stats/Steam-Game-and-Player-Statistics")
+    await page.goto("https://steamcharts.com/")
     
-    const gameIds = await page.$$eval('#detailStats > table > tbody > tr > td:nth-child(4) > a', el => el.map((td) => { return td.getAttribute("href").split("/")[4] }))
-    const gameNames = await page.$$eval('#detailStats > table > tbody > tr > td:nth-child(4) > a', el => el.map((td) => { return td.innerText }))
-    const currentPlayers = await page.$$eval('#detailStats > table > tbody > tr > td:nth-child(1) > span', el => el.map((td) => { return td.innerText }))
-    const peakPlayers = await page.$$eval('#detailStats > table > tbody > tr > td:nth-child(2) > span', el => el.map((td) => { return td.innerText }))
+    const gameIds = await page.$$eval('#top-games > tbody > tr > td.game-name.left > a', el => el.map((td) => { return td.getAttribute("href").split("/")[2] }))
+    const gameNames = await page.$$eval('#top-games > tbody > tr > td.game-name.left > a', el => el.map((td) => { return td.innerText }))
+    const currentPlayers = await page.$$eval('#top-games > tbody > tr > td:nth-child(3)', el => el.map((td) => { return td.innerText }))
+    const peakPlayers = await page.$$eval('#top-games > tbody > tr > td.num.period-col.peak-concurrent', el => el.map((td) => { return td.innerText }))
     
+    console.log(gameIds,gameNames, currentPlayers, peakPlayers)
+
     let gameData = []
     
     for (let i in gameIds) {

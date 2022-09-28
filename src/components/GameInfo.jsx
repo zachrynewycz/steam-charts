@@ -2,7 +2,7 @@ import Features from "./Features";
 
 const GameInfo = ({ game, playerCount }) => {
     return (  
-        <div>
+        <>
             <div className="flex justify-around bg-component-bg rounded-xl my-12 text-white font-pop_semi text-2xl md:text-5xl pb-2 md:pb-5">
                 <h1 className="text-green-txt"><span className="text-sm md:text-lg">Playing Now</span><br/>{playerCount[0] || 0}</h1>
                 <h1><span className="text-sm md:text-lg">24 Hour Peak</span><br/>{playerCount[1] || 0}</h1>
@@ -19,7 +19,7 @@ const GameInfo = ({ game, playerCount }) => {
 
                 <Features game={game}/>
             </div>
-        </div>
+        </>
     );
 }
  
