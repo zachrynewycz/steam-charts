@@ -1,7 +1,7 @@
 import NavBar from "../components/NavBar";
-import RecordContainer from "../components/RecordContainer";
-import SteamUsersOnline from "../components/SteamUsersOnline";
-import TopGamesContainer from "../components/TopGamesContainer";
+import RecordContainer from "../components/Home/RecordContainer";
+import SteamUsersOnline from "../components/Home/SteamUsersOnline";
+import TopGamesContainer from "../components/Home/TopGamesContainer";
 import Footer from "../components/Footer";
 
 const Home = () => {

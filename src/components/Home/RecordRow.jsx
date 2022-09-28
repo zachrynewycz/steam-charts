@@ -4,7 +4,9 @@ const RecordRow = ({ data }) => {
     const navigate = useNavigate();
 
     return (  
-        <div onClick={() => {navigate(`/game/${data.id}`)}}>
+        <div onClick={() => {
+            navigate(`/game/${data.id}`)
+        }}>
             <div className="flex items-center cursor-pointer hover:bg-category-bg rounded-lg">
                 <div className="flex items-center w-3/4">
                     <img className="w-36 rounded-md hidden md:block" src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${data.id}/header.jpg`}/>
@@ -16,6 +18,7 @@ const RecordRow = ({ data }) => {
                     <p className="text-gray-alt-txt font-pop_med w-1/2">{data.data[2]}</p>
                 </div>
             </div>
+            
             <hr className="mt-3 mb-5 border-none h-1 bg-[#1b2634]"/>
         </div>
     );
