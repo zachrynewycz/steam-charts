@@ -9,8 +9,9 @@ const Features = ({ game }) => {
             </div>
         
             <div>
-                <span className="font-pop_semi text-gray-alt-txt mr-4">App ID: </span>
-                <span className="font-pop_reg text-white">{game.steam_appid}</span>
+                <span className="font-pop_semi text-gray-alt-txt mr-4">
+                    App ID: &nbsp;<span className="font-pop_reg text-white">{game.steam_appid}</span>
+                </span>
             </div>
             
             {game.website && 

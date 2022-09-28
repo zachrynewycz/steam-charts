@@ -7,7 +7,7 @@ const puppeteer = require('puppeteer');
 const fetch = require("node-fetch");
 
 app.get("/getSteamUsers", async (req, res) => {
-    const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"] })
+    const browser = await puppeteer.launch()
     const page = await browser.newPage()
     await page.goto("https://store.steampowered.com/about/")
     
@@ -18,7 +18,7 @@ app.get("/getSteamUsers", async (req, res) => {
 })
 
 app.get("/getTopGames", async (req, res) => {
-    const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"] })
+    const browser = await puppeteer.launch()
     const page = await browser.newPage()
     await page.goto("https://steamcharts.com/")
     
@@ -27,8 +27,6 @@ app.get("/getTopGames", async (req, res) => {
     const currentPlayers = await page.$$eval('#top-games > tbody > tr > td:nth-child(3)', el => el.map((td) => { return td.innerText }))
     const peakPlayers = await page.$$eval('#top-games > tbody > tr > td.num.period-col.peak-concurrent', el => el.map((td) => { return td.innerText }))
     
-    console.log(gameIds,gameNames, currentPlayers, peakPlayers)
-
     let gameData = []
     
     for (let i in gameIds) {
@@ -45,7 +43,7 @@ app.get("/getTopGames", async (req, res) => {
 })
 
 app.get("/getGamePlayerCount/:id", async (req, res) => {
-    const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"] })
+    const browser = await puppeteer.launch()
     const page = await browser.newPage()
     await page.goto(`https://steamcharts.com/app/${req.params.id}`)
     
@@ -56,7 +54,7 @@ app.get("/getGamePlayerCount/:id", async (req, res) => {
 })
 
 app.get("/getRecords", async (req, res) => {
-    const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"] })
+    const browser = await puppeteer.launch()
     const page = await browser.newPage()
     await page.goto("https://steamcharts.com/")
     

@@ -12,11 +12,10 @@ const TopGamesContainer = () => {
 
     return (  
     <div className="bg-component-bg rounded-xl px-6 py-5 overflow-y-scroll h-[780px] mb-14 scrollbar">
-        
         <div className="flex justify-between font-pop_semi text-white mb-7">
             <div className="text-xl md:text-3xl md:w-3/4">Top Games &#128200;</div>
         
-            <div className="text-md md:text-xl w-1/2 flex justify-around text-center">
+            <div className="text-md md:text-lg w-1/2 flex justify-between text-center">
                 <span className="text-green-txt">Playing Now</span>
                 <span>Todays Peak</span>
             </div>

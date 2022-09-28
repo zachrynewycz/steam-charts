@@ -20,17 +20,17 @@ const GameBanner = ({ game }) => {
                 <div className="text-white font-pop_med">
                     <div className="flex justify-between">
                         <span className="text-gray-alt-txt">Release Date</span>
-                        <span>{game.release_date.coming_soon ? "Coming Soon" : game.release_date.date}</span>
+                        <span className="text-sm">{game.release_date.coming_soon ? "Coming Soon" : game.release_date.date}</span>
                     </div>
 
                     <div className="flex justify-between">
                         <span className="text-gray-alt-txt">Developer</span>
-                        <span>{game.developers[0]}</span>
+                        <span className="text-sm">{game.developers[0]}</span>
                     </div>
 
                     <div className="flex justify-between">
                         <span className="text-gray-alt-txt">Publisher</span>
-                        <span>{game.publishers[0]}</span>
+                        <span className="text-sm">{game.publishers[0]}</span>
                     </div>
                 </div>
             </div>
