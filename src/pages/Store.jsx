@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import NavBar from "../components/NavBar";
-import GameInfo from "../components/Game/GameInfo";
-import Carousel from "../components/Game/Carousel";
-import Footer from "../components/Footer";
-import GameBanner from "../components/Game/GameBanner";
-import Loading from "../components/Loading";
+import Loading from "../components/LoadingSpinner/Loading";
+import GameContainer from "../components/Game/GameContainer";
 
 const Store = () => {
     const [steamGameData, setSteamGameData] = useState();
@@ -41,14 +37,8 @@ const Store = () => {
     return (  
         <>
             {(steamGameData && playerCounts) 
-            ?   <div className="max-w-[800px] min-w-[400px] mx-auto p-5 md:p-none">
-                    <NavBar/>
-                    <GameBanner game={steamGameData}/>
-                    <GameInfo game={steamGameData} playerCount={playerCounts}/> 
-                    <Carousel images={steamGameData.screenshots}/>
-                    <Footer/>
-                </div>
-            :   <Loading/>
+            ? <GameContainer steamGameData={steamGameData} playerCounts={playerCounts}/> 
+            : <Loading/> 
             }
         </>
     );

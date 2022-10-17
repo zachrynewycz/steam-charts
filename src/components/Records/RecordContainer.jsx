@@ -11,20 +11,28 @@ const RecordContainer = () => {
     }, [])
 
     return ( 
-        <div className="bg-component-bg rounded-xl px-6 py-5">
-            <div className="flex mb-7">
-                <div className="text-xl md:text-3xl w-1/2 md:w-3/4 font-pop_semi text-white">Records &#128293;</div>
-                
-                <div className="flex w-1/2 justify-around font-pop_semi items-center text-md md:text-lg text-white text-center">
-                    <p className="md:w-1/2">All Time Peak</p>
-                    <p className="md:w-1/2">Date</p>
+        <>
+            <>
+                <h1 className="text-xl md:text-5xl font-pop_semi text-white">RECORDS &#128293;</h1>
+                <p className="font-pop_reg text-white mt-2">Highest player counts to be reached</p>
+            </>
+
+            <div className="mt-10">
+                <div className="text-white text-sm flex justify-between">
+                    <p className="w-1/2">RANK</p>
+
+                    <div className="w-1/2 flex justify-end mr-5 text-right">
+                        <p className="mr-5">PEAK PLAYERS</p>
+                        <p className="w-1/3">DATE REACHED</p>
+                    </div>
                 </div>
+
+
+                {records.map((record, i) => 
+                    <RecordRow key={record.id} data={record} rank={i}/>
+                )}
             </div>
-            
-            {records.map(record => 
-                <RecordRow key={record.id} data={record}/>
-            )}
-        </div>
+        </>
     );
 }
  
