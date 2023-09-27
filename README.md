@@ -1,11 +1,7 @@
 
 # Steam Charts
 
-Get a look at the ongoing count of Steam's players. Browse individual game info, see the current records held, or see the current top most played games. All data comes from API's or is Webscraped from Steam/external sites. *Make sure that that game you are looking for is typed correctly. for example: *Human: Fall Flat*
-
-### About
-This was my first attempt at using the backend. ALthough I have little to no experience with express and api routing, I was able to pick up on it quite quickly.
-
+Get a look at the ongoing count of Steam's players. Browse individual game info, see the current records held, or see the current top most played games. All data comes from API's or is Webscraped from Steam/external sites. 
 
 ## Tech Used
 
